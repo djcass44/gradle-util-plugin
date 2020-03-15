@@ -26,6 +26,12 @@ gradlePlugin {
     }
 }
 
+pluginBundle {
+    website = "https://github.com/djcass44/gradle-util-plugin"
+    vcsUrl = "https://github.com/djcass44/gradle-util-plugin"
+    tags = listOf("kotlin-dsl", "kotlin-extensions")
+}
+
 repositories {
     maven(url = "https://mvn.v2.dcas.dev")
     mavenCentral()
