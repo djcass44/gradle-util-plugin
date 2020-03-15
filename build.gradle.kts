@@ -20,6 +20,8 @@ gradlePlugin {
         register("gradle-util-plugin") {
             id = "dev.dcas.gradle-util"
             implementationClass = "dev.dcas.gradle.GradleExtensions"
+            displayName = "Gradle Util Plugin"
+            description = "Small utilities to making your Gradle-Kotlin life easier."
         }
     }
 }
