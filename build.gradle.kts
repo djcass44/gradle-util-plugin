@@ -1,11 +1,25 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    kotlin("jvm") version "1.3.70"
+    id("com.gradle.plugin-publish") version "0.10.1"
+    `kotlin-dsl`
+    `maven-publish`
 }
 
 group = "dev.dcas"
-version = "1.0-SNAPSHOT"
+version = "0.1"
+
+gradlePlugin {
+    plugins {
+        register("gradle-util-plugin") {
+            id = "gradle-util-plugin"
+            implementationClass = "dev.dcas.gradle.GradleExtensions"
+        }
+    }
+}
 
 repositories {
+    maven(url = "https://mvn.v2.dcas.dev")
     mavenCentral()
 }
 
@@ -14,10 +28,10 @@ dependencies {
 }
 
 tasks {
-    compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
-    }
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+    withType<KotlinCompile>().all {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = "11"
+        }
     }
 }
